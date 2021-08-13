@@ -1,0 +1,10 @@
+*.log
+.dockerignore
+.git
+.gitignore
+build/*
+*Dockerfile*
+*docker-compose*
+node_modules
+npm-debug.log*
+README.md

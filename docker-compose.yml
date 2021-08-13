@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: api
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - nonrel_database
+    environment:
+      - MONGO_DATABASE=mongodb
+      - MONGO_USER=admin
+      - MONGO_PASSWORD=admin
+      - MONGO_HOST=nonrel_database
+    depends_on:
+      - nonrel_database
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  nonrel_database:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    command: --quiet
