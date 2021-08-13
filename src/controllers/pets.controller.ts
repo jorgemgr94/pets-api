@@ -36,7 +36,7 @@ export const deletePet: RequestHandler = async (req, res) => {
 	const { id } = req.params;
 
 	try {
-		const petFound = await Pet.findByIdAndDelete(req.params.id);
+		const petFound = await Pet.findByIdAndDelete(id);
 		return res.json(petFound);
 	} catch (error) {
 		return res.status(404).json(error);
@@ -52,7 +52,7 @@ export const updatePet: RequestHandler = async (
 
 	try {
 		const petUpdated = await Pet.findByIdAndUpdate(id, body, {
-			new: true,
+			new: true
 		});
 		return res.json(petUpdated);
 	} catch (error) {

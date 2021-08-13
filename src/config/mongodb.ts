@@ -23,6 +23,7 @@ const config = {
 			mongooseOptions
 		);
 
+		// eslint-disable-next-line no-console
 		console.log("MongoDB connected to: ", db.connection.name);
 	} catch (error) {
 		console.error(error);
