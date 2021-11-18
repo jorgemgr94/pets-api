@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2017",
+    // "lib": [
+    //   "es2017",
+    //   "es2020.string"
+    // ],
     "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -12,6 +16,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*.ts"
@@ -20,5 +29,5 @@
     "node_modules",
     "dist"
   ],
-  "compileOnSave": false
+  "compileOnSave": true
 }
