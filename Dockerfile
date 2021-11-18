@@ -7,7 +7,7 @@ RUN yarn install
 
 ENV NODE_ENV=production
 
-COPY . .
+COPY . ./
 RUN yarn run build
 
 # EXPOSE 80
