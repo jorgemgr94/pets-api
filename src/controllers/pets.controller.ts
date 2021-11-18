@@ -1,7 +1,10 @@
-import { Response, RequestHandler } from "express";
+import { Response, RequestHandler, Request } from "express";
 import Pet from "../models/Pet";
 
-export const createPet: RequestHandler = async (req, res) => {
+export const createPet: RequestHandler = async (
+	req: Request,
+	res: Response
+) => {
 	try {
 		const petFound = await Pet.findOne({ url: req.body.url });
 		if (petFound)
@@ -15,16 +18,18 @@ export const createPet: RequestHandler = async (req, res) => {
 	}
 };
 
-export const getPets: RequestHandler = async (req, res) => {
+export const getPets: RequestHandler = async (req: Request, res: Response) => {
 	try {
-		const pets = await Pet.find();
+		// const pets = await Pet.find();
+		const pets = ["Hello"];
+
 		return res.json(pets);
 	} catch (error) {
 		return res.status(404).json(error);
 	}
 };
 
-export const getPet: RequestHandler = async (req, res) => {
+export const getPet: RequestHandler = async (req: Request, res: Response) => {
 	const petFound = await Pet.findById(req.params.id);
 
 	if (!petFound) return res.status(204).json();
@@ -32,7 +37,10 @@ export const getPet: RequestHandler = async (req, res) => {
 	return res.json(petFound);
 };
 
-export const deletePet: RequestHandler = async (req, res) => {
+export const deletePet: RequestHandler = async (
+	req: Request,
+	res: Response
+) => {
 	const { id } = req.params;
 
 	try {
@@ -44,8 +52,8 @@ export const deletePet: RequestHandler = async (req, res) => {
 };
 
 export const updatePet: RequestHandler = async (
-	req,
-	res
+	req: Request,
+	res: Response
 ): Promise<Response> => {
 	const { id } = req.params;
 	const { body } = req;
