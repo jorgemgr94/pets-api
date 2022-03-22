@@ -19,8 +19,7 @@
     "declaration": true,
     "declarationMap": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": true
+    "noUnusedLocals": true
   },
   "include": [
     "src/**/*.ts"

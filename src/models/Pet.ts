@@ -5,12 +5,16 @@ const petSchema = new Schema(
 		name: {
 			type: String,
 			required: true,
-			trim: true,
+			trim: true
 		},
+		gender: {
+			type: String,
+			enum: ["male", "female"]
+		}
 	},
 	{
-		versionKey: false,
 		timestamps: true,
+		versionKey: false
 	}
 );
 
