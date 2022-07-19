@@ -1,14 +1,14 @@
-FROM node:16.13.1-alpine
+FROM node:17-alpine3.14
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package.json ./
-RUN yarn install
+RUN npm install
 
 ENV NODE_ENV=production
 
-COPY . ./
-RUN yarn run build
+COPY . .
+RUN npm run build
 
 # EXPOSE 80
 USER node

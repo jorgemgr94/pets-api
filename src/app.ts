@@ -9,9 +9,6 @@ const app = express();
 dotenv.config();
 const { NODE_ENV, CORS_ORIGINS } = process.env;
 
-// App port
-app.set("port", process.env.PORT || 3001);
-
 // Middleware
 if (NODE_ENV === "development") {
 	app.use(morgan("dev"));

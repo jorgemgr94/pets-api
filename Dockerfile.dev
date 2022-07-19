@@ -1,16 +1,11 @@
-FROM node:16.13.1-alphine
+FROM node:17-alpine3.14
 
-# TODO: REally we need this to user bcrypt on alphine images?
-## install required packages before npm
-# RUN apk --no-cache add --virtual builds-deps build-base python
+WORKDIR /usr/src/app
 
-WORKDIR /app
+COPY package*.json ./
 
-COPY package.json ./
+RUN npm install
 
-RUN yarn install
+COPY . .
 
-COPY . ./
-
-USER node
-CMD ["yarn", "run", "dev"]
+CMD ["npm", "run", "dev"]

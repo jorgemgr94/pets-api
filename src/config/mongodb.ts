@@ -1,34 +1,23 @@
-import { connect, ConnectOptions } from "mongoose";
+import { connect, ConnectOptions, Mongoose } from "mongoose";
+class Mongodb {
+	private MONGODB_URI = `mongodb+srv://admin:uW5JFQhkp8cyvVb@demo.7kei7.mongodb.net/Demo?retryWrites=true&w=majority`;
+	private mongooseOptions: ConnectOptions = {
+		// authSource: "admin"
+		// user: config.MONGO_USER,
+		// pass: config.MONGO_PASSWORD
+	};
+	public db: Mongoose;
 
-// const config = {
-// 	MONGO_DATABASE: process.env.MONGO_DATABASE,
-// 	MONGO_USER: process.env.MONGO_USER,
-// 	MONGO_PASSWORD: process.env.MONGO_PASSWORD,
-// 	MONGO_HOST: process.env.MONGO_HOST
-// };
+	async connect() {
+		try {
+			this.db = await connect(this.MONGODB_URI, this.mongooseOptions);
 
-(async () => {
-	try {
-		const mongooseOptions: ConnectOptions = {
-			// authSource: "admin"
-			// user: config.MONGO_USER,
-			// pass: config.MONGO_PASSWORD
-		};
-
-		// const db = await connect(
-		// 	`mongodb://${config.MONGO_HOST}/${config.MONGO_DATABASE}`,
-		// 	mongooseOptions
-		// );
-
-		// TODO: Put this on env files.
-		const db = await connect(
-			`mongodb+srv://admin:uW5JFQhkp8cyvVb@demo.7kei7.mongodb.net/Demo?retryWrites=true&w=majority`,
-			mongooseOptions
-		);
-
-		// eslint-disable-next-line no-console
-		console.log("MongoDB connected to: ", db.connection.name);
-	} catch (error) {
-		console.error(error);
+			// eslint-disable-next-line no-console
+			console.log(`Mongodb connected to: ${this.db.connection.name}`);
+		} catch (error) {
+			console.error(error);
+		}
 	}
-})();
+}
+
+export default new Mongodb();

@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
   app:
@@ -9,19 +9,20 @@ services:
     ports:
       - "4000:3000"
     links:
-      - nonrel_database
+      - mongodb
     environment:
       - MONGO_DATABASE=mongodb
       - MONGO_USER=admin
       - MONGO_PASSWORD=admin
-      - MONGO_HOST=nonrel_database
+      - MONGO_HOST=mongodb
     depends_on:
-      - nonrel_database
+      - mongodb
+      # - postgres
     volumes:
-      - .:/app
-      - /app/node_modules
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
 
-  mongo:
+  mongodb:
     container_name: mongodb
     image: mongo
     # environment:
@@ -31,3 +32,12 @@ services:
       - "27017:27017"
     logging:
       driver: none
+  # postgres:
+  #     image: 'postgres:14.2'
+  #     restart: always
+  #     volumes:
+  #       - './postgres_data:/var/lib/postgresql/data'
+  #     environment:
+  #       - POSTGRES_PASSWORD=123123
+  #     ports:
+  #     - '5432:5432'

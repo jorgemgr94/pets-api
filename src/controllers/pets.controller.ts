@@ -25,6 +25,8 @@ export const getPets: RequestHandler = async (
 		const pets = await Pet.find();
 		return res.json(pets);
 	} catch (error) {
+		// Do we need to do this? or we will handle this one level up?
+		// return res.status(500).json({ message: error.message });
 		next(error);
 	}
 };

@@ -4,6 +4,9 @@
   ],
   "ext": "ts,json",
   "ignore": [
+    ".git",
+    "node_modules/",
+    "dist/",
     "src/**/*.spec.ts"
   ],
   "exec": "npx ts-node ./src/index.ts"
